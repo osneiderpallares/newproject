@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cliente;
 use Carbon\Carbon;
-use Illuminate\Session\Store;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class ClienteController extends Controller
 {
@@ -15,8 +13,8 @@ class ClienteController extends Controller
     public function index(Request $request)
     {
     	$cli = Cliente::all();
-    	return view ('cliente')
-    	->with('cli',$cli);
+    	return view ('cliente')        
+    	->with('cli',$cli);        
     }
     public function crear()
     {
@@ -24,28 +22,46 @@ class ClienteController extends Controller
     }
     
     public function guardar(Request $request)
-    {    	 
-        $cli = new Cliente();
-        $cli->create($request->all());  
-        
-        $cli = Cliente::all();
+    {   
+        $id = $request->input('id');        
+        $ex = DB::table('clientes')   //realizo la sentencia para saber si existe
+        ->select('id')
+        ->where('id', '=', $id)
+        ->count();        
 
-    	return redirect('cliente')
-    	->with('cli',$cli);
+        $ex = DB::table('clientes')->where('id', $id)->exists();
+
+        if ($ex == True)
+        {
+            $status = 'El relgistro ya existe, ingrese un nuevo registro';
+            $clase = 'alert alert-danger';
+            return redirect('cliente/crear')        
+            ->with('status',$status)
+            ->with('clase',$clase);            
+        }elseif ($ex == Fasle) {
+            $cli = new Cliente();
+             $cli->create($request->all());
+             $status = 'Registro almacenado con éxito';
+             $clase = 'alert alert-success';
+             return redirect('cliente')        
+             ->with('status',$status)
+             ->with('clase',$clase);
+        }
     }   
     public function del($id)
-    {        
-        $cli=Cliente::find($id);
-        $cli->delete();        
-        $cli = Cliente::all();
+    {                
+        Cliente::destroy($id);     
+        $status = 'Registro borrado con éxito';   
+        $clase = 'alert alert-danger';        
         return redirect('cliente')
-        ->with('cli',$cli);
+        ->with('status',$status)
+        ->with('clase',$clase);; 
     }
     public function PreEdit($id)
     {
-        $cli = CLiente::all()->where('id', $id)->first();        
+        $cli = Cliente::all()->where('id', $id)->first();                
         return view('form_edit')
-        ->with('cli',$cli);
+        ->with('cli',$cli);        
     }
     public function Edit(Request $request, $id)
     {
@@ -60,6 +76,12 @@ class ClienteController extends Controller
         $cli->last_name=$nuevo_last_name;
         $cli->email=$nuevo_email;
         $cli->save();
-        return redirect('cliente');
+        
+        $status = "Registro actualizado con éxito";
+        $clase = 'alert alert-primary';
+
+        return redirect('cliente')
+        ->with('status',$status)
+        ->with('clase',$clase);
     }
 }
