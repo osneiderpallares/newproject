@@ -1,5 +1,12 @@
-<form id="form" action="{{ url("/cliente/mod/$cli->id") }}" method="POST" enctype="multipart/form-data">  
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <form id="form" action="{{ url("/cliente/mod/$cli->id") }}" method="POST" enctype="multipart/form-data">  
   {{ csrf_field() }}
+      
   <div class="form-group">
     <label for="identificacion">Identificación: </label>
     <input type="text" class="form-control" id="id" name="id" value="{{ $cli->id }}" placeholder="Identificación">    
@@ -21,3 +28,7 @@
   </div>    
   <button type="submit" class="btn btn-primary">Modificar</button>
 </form>
+<script type="js/bootstrap.min.js"></script>
+<script type="js/docs.min.js"></script>
+</body>
+</html>
