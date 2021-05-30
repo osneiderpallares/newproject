@@ -4,6 +4,7 @@
   <link href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+  <div class="container">  
   <H2><p class="p-2 bg-primary text-white" align="center">
     Crear clientes
   </p></H2>
@@ -23,7 +24,7 @@
 
     <div class="form-group">
       <label for="nombre">Nombre<font color="red"><b>*</b></font>: </label>
-      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Nombre" minlength="1" maxlength="50" required>
+      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Nombre" minlength="1" maxlength="50" required value="">
     </div>
 
     <div class="form-group">
@@ -41,5 +42,6 @@
   </form>
   <script type="js/bootstrap.min.js"></script>
   <script type="js/docs.min.js"></script>
+</div>
 </body>
 </html>

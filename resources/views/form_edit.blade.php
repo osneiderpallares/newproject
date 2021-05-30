@@ -4,6 +4,7 @@
   <link href="../../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+  <div class="container">  
   <H2><p class="p-2 bg-primary text-white" align="center">
     Editar clientes
   </p></H2>
@@ -41,5 +42,6 @@
 </form>
 <script type="js/bootstrap.min.js"></script>
 <script type="js/docs.min.js"></script>
+</div>
 </body>
 </html>

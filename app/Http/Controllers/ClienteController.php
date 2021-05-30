@@ -38,7 +38,7 @@ class ClienteController extends Controller
             return redirect('cliente/crear')        
             ->with('status',$status)
             ->with('clase',$clase);            
-        }elseif ($ex == Fasle) {
+        }elseif ($ex == False) {
             $cli = new Cliente();
              $cli->create($request->all());
              $status = 'Registro almacenado con éxito';
