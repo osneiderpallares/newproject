@@ -17,24 +17,36 @@
 </div>
 @endif
 
+@if (count($errors)>0)
+<div class="alert alert-danger" role="alert">
+  <ul>
+  @foreach ($errors->all() as $error)
+  <li>
+    {{ $error }}
+  </li>
+  @endforeach  
+</ul>
+</div>
+@endif
+
     <div class="form-group">
       <label for="identificacion">Identificación<font color="red"><b>*</b></font>: </label>
-      <input type="number" class="form-control" id="id" name="id" placeholder="Identificación" autofocus min="1" max="9999999999" step="1" required>
+      <input type="number" class="form-control" id="id" name="id" placeholder="Identificación" autofocus min="1" max="9999999999" step="1" required>      
     </div>
 
     <div class="form-group">
       <label for="nombre">Nombre<font color="red"><b>*</b></font>: </label>
-      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Nombre" minlength="1" maxlength="50" required value="">
+      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Nombre" minlength="1" maxlength="50" required>      
     </div>
 
     <div class="form-group">
       <label for="nombre">Apellido<font color="red"><b>*</b></font>: </label>
-      <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Apellido" minlength="1" maxlength="50" required>
+      <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Apellido" minlength="1" maxlength="50" required>      
     </div>
 
     <div class="form-group">
       <label for="exampleInputEmail1">Email<font color="red"><b>*</b></font>:</label>
-      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>   
+      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>         
     </div>    
     <br>
     <button type="submit" class="btn btn-primary">Guardar</button>    

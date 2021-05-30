@@ -23,8 +23,18 @@ class ClienteController extends Controller
     
     public function guardar(Request $request)
     {   
+       /* $validatedData = $request->validate([
+        'id'        => 'required|integer',
+        'first_name' => 'required|string|max:100',
+        'last_name' => 'required|string|max:100',
+        'email' => 'required|email',
+    ]);        
+
+        $mensaje = ["required"=>'El atributo es requerido'];
+        $this->validate($request,$validatedData,$mensaje);*/
+
         $id = $request->input('id');        
-        $ex = DB::table('clientes')   //realizo la sentencia para saber si existe
+        $ex = DB::table('clientes')
         ->select('id')
         ->where('id', '=', $id)
         ->count();        

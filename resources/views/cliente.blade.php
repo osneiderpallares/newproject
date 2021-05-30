@@ -15,7 +15,8 @@
 <div class='{{ Session('clase') }}' role="alert">
   {{ Session('status') }}
 </div>
-@endif   
+@endif 
+
     <p><a href="{{ url("/cliente/crear") }}">
     <button type="submit" class="btn btn-primary">Agregar registros</button></a></p>
     <table class="table table-hover" padding=2>      
